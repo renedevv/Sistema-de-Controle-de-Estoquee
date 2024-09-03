@@ -1,0 +1,94 @@
+-- 1. Criar o Banco de Dados
+CREATE DATABASE SistemaControleEstoque;
+USE SistemaControleEstoque;
+
+-- 2. Criar as Tabelas
+
+-- Tabela de Fornecedores
+CREATE TABLE Fornecedores (
+    FornecedorID INT AUTO_INCREMENT PRIMARY KEY,
+    NomeFornecedor VARCHAR(100) NOT NULL,
+    Contato VARCHAR(100),
+    Telefone VARCHAR(15)
+);
+
+-- Tabela de Produtos
+CREATE TABLE Produtos (
+    ProdutoID INT AUTO_INCREMENT PRIMARY KEY,
+    NomeProduto VARCHAR(100) NOT NULL,
+    QuantidadeEstoque INT NOT NULL,
+    Preco DECIMAL(10, 2) NOT NULL,
+    FornecedorID INT,
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedores(FornecedorID)
+);
+
+-- Tabela de Pedidos de Reposição
+CREATE TABLE PedidosReposicao (
+    PedidoID INT AUTO_INCREMENT PRIMARY KEY,
+    ProdutoID INT,
+    QuantidadeSolicitada INT NOT NULL,
+    DataPedido DATE NOT NULL,
+    FOREIGN KEY (ProdutoID) REFERENCES Produtos(ProdutoID)
+);
+
+-- 3. Inserir Dados
+
+-- Inserir Fornecedores
+INSERT INTO Fornecedores (NomeFornecedor, Contato, Telefone) VALUES
+('Fornecedor A', 'contato@fornecedora.com', '123456789'),
+('Fornecedor B', 'contato@fornecedorb.com', '987654321'),
+('Fornecedor C', 'contato@fornecedorc.com', '123123123');
+
+-- Inserir Produtos
+INSERT INTO Produtos (NomeProduto, QuantidadeEstoque, Preco, FornecedorID) VALUES
+('Produto 1', 100, 50.00, 1),
+('Produto 2', 200, 30.00, 2),
+('Produto 3', 150, 20.00, 3);
+
+-- Inserir Pedidos de Reposição
+INSERT INTO PedidosReposicao (ProdutoID, QuantidadeSolicitada, DataPedido) VALUES
+(1, 50, '2024-09-01'),
+(2, 100, '2024-09-02'),
+(3, 75, '2024-09-03');
+
+-- 4. Consultas
+
+-- Consulta de todos os produtos em estoque
+SELECT * FROM Produtos;
+
+-- Consulta de todos os pedidos de reposição feitos
+SELECT * FROM PedidosReposicao;
+
+-- Consulta de informações sobre os fornecedores
+SELECT * FROM Fornecedores;
+
+-- Consulta de produtos fornecidos por um fornecedor específico (por exemplo, FornecedorID = 1)
+SELECT NomeProduto, QuantidadeEstoque, Preco
+FROM Produtos
+WHERE FornecedorID = 1;
+
+-- 5. Atualização de Dados
+
+-- Atualizar a quantidade de produtos em estoque após receber um novo pedido de reposição (por exemplo, ProdutoID = 1)
+UPDATE Produtos 
+SET QuantidadeEstoque = QuantidadeEstoque + 50 
+WHERE ProdutoID = 1;
+
+-- Atualizar o preço de um produto (por exemplo, ProdutoID = 2)
+UPDATE Produtos 
+SET Preco = 35.00 
+WHERE ProdutoID = 2;
+
+-- 6. Deleção de Dados
+
+-- Remover um produto descontinuado (por exemplo, ProdutoID = 3)
+DELETE FROM Produtos 
+WHERE ProdutoID = 3;
+
+-- Remover um fornecedor que não faz mais parte da empresa (por exemplo, FornecedorID = 2)
+DELETE FROM Fornecedores 
+WHERE FornecedorID = 2;
+
+-- Excluir um pedido de reposição específico (por exemplo, PedidoID = 2)
+DELETE FROM PedidosReposicao 
+WHERE PedidoID = 2;

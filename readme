@@ -1,0 +1,28 @@
+Sistema de Controle de Estoque
+Descrição
+Este projeto é um sistema de controle de estoque que permite gerenciar produtos, fornecedores e pedidos de reposição. O sistema foi desenvolvido utilizando SQL para criar e manipular o banco de dados.
+
+Estrutura do Projeto
+Banco de Dados: SistemaControleEstoque
+Tabelas:
+Fornecedores: Armazena informações sobre os fornecedores.
+Produtos: Armazena informações sobre os produtos em estoque.
+PedidosReposicao: Armazena informações sobre os pedidos de reposição de produtos.
+Comandos SQL Utilizados
+CREATE DATABASE: Cria o banco de dados.
+CREATE TABLE: Cria as tabelas do sistema.
+INSERT: Insere dados nas tabelas.
+SELECT: Realiza consultas no banco de dados.
+UPDATE: Atualiza os registros das tabelas.
+DELETE: Remove registros das tabelas.
+Como Usar
+Execute os comandos SQL fornecidos no arquivo sistema_estoque.sql para criar o banco de dados e as tabelas.
+Insira os dados iniciais nas tabelas utilizando os comandos INSERT.
+Utilize os comandos SELECT para consultar os dados armazenados.
+Use UPDATE para modificar os dados conforme necessário.
+Utilize DELETE para remover dados desnecessários.
+Contribuição
+Sinta-se à vontade para abrir uma issue ou enviar um pull request para contribuir com este projeto.
+
+Licença
+Este projeto é licenciado sob a MIT License - veja o arquivo LICENSE para mais detalhes.
